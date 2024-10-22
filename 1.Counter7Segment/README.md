@@ -30,6 +30,7 @@ This project implements a binary counter for the DE10-Lite FPGA board, which dri
 3. **Compile the Design**: Use the Quartus compiler to build the design.
 4. **Upload to FPGA**:
     - Use the Quartus Programmer to upload the design to the DE10-Lite board.
+        <img width="428" alt="image" src="https://github.com/user-attachments/assets/592fa7b7-f14d-41c4-85bd-dee81088006b">
 
 ---
 
@@ -37,25 +38,34 @@ This project implements a binary counter for the DE10-Lite FPGA board, which dri
 
 1. **Setup Simulation in Quartus**:
     - Go to `Assignments > Settings`.
+      <br/><img width="421" alt="image" src="https://github.com/user-attachments/assets/6785979b-1824-4273-bd84-794af6d9093c"><br/>
     - In the "Settings" window, navigate to `EDA Tool Settings > Simulation`.
     - Set the **Tool Name** to "ModelSim-Altera".
     - Select **VHDL** as the output format.
     - Set the output directory (preferably to `...\Counter7Segment\simulation\modelsim`).
+      <br/><img width="320" alt="image" src="https://github.com/user-attachments/assets/5af222ac-5c49-48f5-bc43-f1ccd941199e"><br/>
+
 
 2. **Add the Test Bench**:
     - In the same Simulation Settings window, under **NativeLink Settings**, check "Compile test bench".
     - Click **Test Benches** and add the `test_bench.vhd` file located in `src\test_bench.vhd`.
     - Click **Add**, then **OK**.
     - Apply the settings and close the window.
+      <br/><img width="320" alt="image" src="https://github.com/user-attachments/assets/f1171eb0-e67e-43d2-b272-2ca180fde96f"><br/>
+
 
 3. **Specify ModelSim Installation Path**:
     - Go to `Tools > Options > General > EDA Tool Options`.
     - Set the **ModelSim-Altera Path** to your ModelSim installation location (usually `C:\intelFPGA\20.1\modelsim_ase\win32aloem`).
     - Click **OK** to save and exit.
+      <br/><img width="320" alt="image" src="https://github.com/user-attachments/assets/abda6f12-0206-472a-bd3e-3c047b4e3813"><br/>
+
 
 4. **Running the Simulation**:
     - Compile the project in Quartus.
     - Go to `Tools > Run Simulation Tool > RTL Simulation` to run the simulation.
+    <br/> <img width="574" alt="image" src="https://github.com/user-attachments/assets/cf7ff347-431e-4dec-a69c-a4b77e0a4a2f">><br/>
+
 
 ---
 
