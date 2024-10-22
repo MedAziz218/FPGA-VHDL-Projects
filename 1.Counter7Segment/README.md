@@ -15,8 +15,8 @@ This project implements a binary counter for the DE10-Lite FPGA board, which dri
 
 ### Tools Required
 
-- **Quartus Prime 20.1**: For compilation and uploading the design to the DE10-Lite board.
-- **ModelSim 20.1**: For simulating the VHDL design before hardware implementation.
+- [**Quartus Prime 20.1**](https://www.intel.com/content/www/us/en/software-kit/661019/intel-quartus-prime-lite-edition-design-software-version-20-1-for-windows.html): For compilation and uploading the design to the DE10-Lite board.
+- [**ModelSim 20.1**](https://www.intel.com/content/www/us/en/software-kit/750666/modelsim-intel-fpgas-standard-edition-software-version-20-1-1.html): For simulating the VHDL design before hardware implementation.
 
 ---
 
