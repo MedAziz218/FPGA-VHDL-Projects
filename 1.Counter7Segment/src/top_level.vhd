@@ -3,7 +3,8 @@ library IEEE;
 
 entity top_level is
   generic (
-    DIV_FACTOR : integer := 50 -- 50000000 for 1Hz (see clock_divider.vhd)
+--    DIV_FACTOR : integer := 50 -- 50000000 for 1Hz (see clock_divider.vhd)
+	 DIV_FACTOR : integer := 50000000 -- 50000000 for 1Hz (see clock_divider.vhd)
   );
   port (
     -- ADC_CLK_10      : in    std_logic;
