@@ -6,7 +6,7 @@ entity vga_DE10 is
 		CLOCK_50 :IN std_logic;						--	50 MHz
 		reset:IN std_logic;							-- reset key
 		SW: IN std_logic_vector (3 downto 0); 	-- switches
-		VGA_CLK:OUT std_logic;			-- 
+		VGA_CLK:OUT std_logic;			--
 		VGA_HS: OUT std_logic;						-- VGA H_SYNC
 		VGA_VS:OUT std_logic;						-- VGA V_SYNC
 		VGA_BLANK:OUT std_logic;					-- VGA BLANK
@@ -50,37 +50,37 @@ begin
         red   <= "0000";                -- Red: 0
         green <= "0000";                -- Green: 0
         blue  <= "0000";                -- Blue: 0
-        
+
     elsif  X < 160 then      -- Section 2
         red   <= "1111";                -- Red: 15
         green <= "0000";                -- Green: 0
         blue  <= "0000";                -- Blue: 0
-        
+
     elsif X < 240 then     -- Section 3
         red   <= "0000";                -- Red: 0
         green <= "1111";                -- Green: 15
         blue  <= "0000";                -- Blue: 0
-        
+
     elsif  X < 320 then     -- Section 4
         red   <= "0000";                -- Red: 0
         green <= "0000";                -- Green: 0
         blue  <= "1111";                -- Blue: 15
-        
+
     elsif  X < 400 then     -- Section 5
         red   <= "1111";                -- Red: 15
         green <= "1111";                -- Green: 15
         blue  <= "0000";                -- Blue: 0
-        
+
     elsif  X < 480 then     -- Section 6
         red   <= "0000";                -- Red: 0
         green <= "1111";                -- Green: 15
         blue  <= "1111";                -- Blue: 15
-        
+
     elsif X < 560 then     -- Section 7
         red   <= "1111";                -- Red: 15
         green <= "0000";                -- Green: 0
         blue  <= "1111";                -- Blue: 15
-        
+
     elsif X <= 639 then    -- Section 8
         red   <= "1111";                -- Red: 15
         green <= "1111";                -- Green: 15
@@ -106,18 +106,18 @@ end process;
 --VGA_CLK <= VGA_CTRL_CLK;    --VGA_CLK
 -- VGA COMPONENT
  VGA1: VGA port map(oRequest=>open,
-					iRed=>red,        
-					iGreen=>green,      
-					iBlue=>blue,       
-					oVGA_R=>VGA_R,      
-					oVGA_G=>VGA_G,      
-					oVGA_B=>VGA_B,      
-					oVGA_H_SYNC=>VGA_HS, 
-					oVGA_V_SYNC=>VGA_VS, 
-					oVGA_SYNC=>VGA_SYNC,   
-					oVGA_BLANK=>VGA_BLANK,  
-					iCLK=>VGA_CTRL_CLK,        
-					iRST_N=>reset,      
+					iRed=>red,
+					iGreen=>green,
+					iBlue=>blue,
+					oVGA_R=>VGA_R,
+					oVGA_G=>VGA_G,
+					oVGA_B=>VGA_B,
+					oVGA_H_SYNC=>VGA_HS,
+					oVGA_V_SYNC=>VGA_VS,
+					oVGA_SYNC=>VGA_SYNC,
+					oVGA_BLANK=>VGA_BLANK,
+					iCLK=>VGA_CTRL_CLK,
+					iRST_N=>reset,
 					X=>X,
 					Y=>Y);
 end vgade2arch;

@@ -16,19 +16,19 @@ entity VGA is
 end entity;
 
 architecture vgaarch of vga is
-  --Horizontal parameter(Pixel)  
+  --Horizontal parameter(Pixel)
   constant H_SYNC_CYC   : integer := 96;
   constant H_SYNC_BACK  : integer := 48;
   constant H_SYNC_ACT   : integer := 640;
   constant H_SYNC_FRONT : integer := 16;
   constant H_SYNC_TOTAL : integer := 800;
-  --Virtical parameter (Line) 
+  --Virtical parameter (Line)
   constant V_SYNC_CYC   : integer := 2;
   constant V_SYNC_BACK  : integer := 32;
   constant V_SYNC_ACT   : integer := 480;
   constant V_SYNC_FRONT : integer := 11;
   constant V_SYNC_TOTAL : integer := 525;
-  --Start Offset 
+  --Start Offset
   constant X_START : integer := H_SYNC_CYC + H_SYNC_BACK;
   constant Y_START : integer := V_SYNC_CYC + V_SYNC_BACK;
 
@@ -36,14 +36,14 @@ architecture vgaarch of vga is
   signal oVGA_H_SYNC_s, oVGA_V_SYNC_s : std_logic;
 
 begin
-  --RGB GENERATION 
-  oVGA_R <= iRed when (H_Cont >= X_START and H_Cont < X_START + H_SYNC_ACT and 
+  --RGB GENERATION
+  oVGA_R <= iRed when (H_Cont >= X_START and H_Cont < X_START + H_SYNC_ACT and
 							V_Cont >= Y_START and V_Cont < Y_START + V_SYNC_ACT) else
                               (others => '0');
-  oVGA_G <= iGreen when (H_Cont >= X_START and H_Cont < X_START + H_SYNC_ACT and 
+  oVGA_G <= iGreen when (H_Cont >= X_START and H_Cont < X_START + H_SYNC_ACT and
 							V_Cont >= Y_START and V_Cont < Y_START + V_SYNC_ACT) else
 										(others => '0');
-  oVGA_B <= iBlue when (H_Cont >= X_START and H_Cont < X_START + H_SYNC_ACT and 
+  oVGA_B <= iBlue when (H_Cont >= X_START and H_Cont < X_START + H_SYNC_ACT and
 								V_Cont >= Y_START and V_Cont < Y_START + V_SYNC_ACT) else
 										(others => '0');
 
@@ -69,18 +69,18 @@ begin
   begin
     if (iCLK = '1') then
       if (iRST_N = '0') then
-        H_Cont <= 0; --H_Cont		
-        oVGA_H_SYNC_s <= '0'; --oVGA_H_SYNC_s	
+        H_Cont <= 0; --H_Cont
+        oVGA_H_SYNC_s <= '0'; --oVGA_H_SYNC_s
       else
         --H_Sync Counter
         if (H_Cont < H_SYNC_TOTAL) then
-          H_Cont <= H_Cont + 1; --H_Cont	
+          H_Cont <= H_Cont + 1; --H_Cont
         else
-          H_Cont <= 0; --H_Cont	
+          H_Cont <= 0; --H_Cont
         end if;
         --	H_Sync Generator
         if (H_Cont < H_SYNC_CYC) then
-          oVGA_H_SYNC_s <= '0'; --oVGA_H_SYNC_s	
+          oVGA_H_SYNC_s <= '0'; --oVGA_H_SYNC_s
         else
           oVGA_H_SYNC_s <= '1'; --oVGA_H_SYNC_s
         end if;
@@ -93,14 +93,14 @@ begin
   begin
     if (iCLK = '1') then
       if (iRST_N = '0') then
-        V_Cont <= 0; --V_Cont		
-        oVGA_V_SYNC_s <= '0'; --oVGA_V_SYNC_s	
+        V_Cont <= 0; --V_Cont
+        oVGA_V_SYNC_s <= '0'; --oVGA_V_SYNC_s
       else
         --	When H_Sync Re-start
         if (H_Cont = 0) then
           --	V_Sync Counter
           if (V_Cont < V_SYNC_TOTAL) then
-            V_Cont <= V_Cont + 1; --V_Cont	
+            V_Cont <= V_Cont + 1; --V_Cont
           else
             V_Cont <= 0; --V_Cont
           end if;
@@ -108,7 +108,7 @@ begin
           if (V_Cont < V_SYNC_CYC) then
             oVGA_V_SYNC_s <= '0'; --oVGA_V_SYNC_s
           else
-            oVGA_V_SYNC_s <= '1'; --oVGA_V_SYNC_s	
+            oVGA_V_SYNC_s <= '1'; --oVGA_V_SYNC_s
           end if;
         end if;
       end if;
@@ -117,7 +117,7 @@ begin
   oVGA_SYNC <= oVGA_H_SYNC_s and oVGA_V_SYNC_s; -- oVGA_SYNC
   oVGA_V_SYNC <= oVGA_V_SYNC_s; -- oVGA_V_SYNC
   oVGA_H_SYNC <= oVGA_H_SYNC_s; -- oVGA_H_SYNC
-  oVGA_BLANK <= '1'; -- oVGA_BLANK 
+  oVGA_BLANK <= '1'; -- oVGA_BLANK
   oVGA_CLOCK <= iCLK; -- oVGA_CLOCK
   X <= H_Cont - X_START when (H_Cont > X_START and H_Cont < X_START + H_SYNC_ACT) else 0; -- X
   Y <= V_Cont - Y_START when (V_Cont > Y_START and V_Cont < Y_START + V_SYNC_ACT) else 0; -- Y
